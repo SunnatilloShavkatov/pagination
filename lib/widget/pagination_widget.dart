@@ -4,14 +4,12 @@ class PaginationWidget extends StatelessWidget {
   final bool isLoading;
   final Function onPagination;
   final Widget child;
-  final List<String> data;
 
   const PaginationWidget({
     Key key,
     this.isLoading,
     this.onPagination,
     this.child,
-    this.data,
   }) : super(key: key);
 
   @override
@@ -30,32 +28,32 @@ class PaginationWidget extends StatelessWidget {
               }
               return;
             },
-            child: Stack(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text("data"),
-                      ),
-                      subtitle: Text("likes: ${index + 1}"),
-                    );
-                  },
-                ),
-              ],
-            ),
+            child: child,
           ),
         ),
         Visibility(
           visible: isLoading,
           child: Container(
-            height: 50,
-            child: Center(
-              child: CircularProgressIndicator(),
+            height: 60,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: 28,
+                  width: 28,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                SizedBox(
+                  height: 36,
+                  width: 36,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
