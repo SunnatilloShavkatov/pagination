@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PaginationWidget extends StatelessWidget {
+class InfiniteScrollingPagination extends StatelessWidget {
   final bool isLoading;
   final Function onPagination;
   final Widget child;
 
-  const PaginationWidget({
+  InfiniteScrollingPagination({
     Key key,
     this.isLoading,
     this.onPagination,
@@ -35,25 +35,30 @@ class PaginationWidget extends StatelessWidget {
           visible: isLoading,
           child: Container(
             height: 60,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
+            child: SizedBox(
+              height: 36,
+              width: 36,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    height: 36,
+                    width: 36,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 36,
-                  width: 36,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                ),
-              ],
+                  Container(
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

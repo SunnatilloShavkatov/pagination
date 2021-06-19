@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pagination/controller/home_controller.dart';
-import 'package:pagination/widget/pagination_widget.dart';
+import 'package:pagination/widget/infinite_scrolling_pagination.dart';
 
 class GetPaginationPage extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class GetPaginationPage extends StatelessWidget {
           appBar: AppBar(
             title: Text('widget.title'),
           ),
-          body: PaginationWidget(
+          body: InfiniteScrollingPagination(
             isLoading: controller.isLoading,
             onPagination: () async {
               await controller.setData(["", "", "", "", "", "", "", "", ""]);
